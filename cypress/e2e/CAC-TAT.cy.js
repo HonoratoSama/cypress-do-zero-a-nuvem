@@ -22,7 +22,7 @@ describe('Digitando em campos e clicando em elementos', () =>{
     cy.get('#open-text-area').type('teste de texto livre',{delay:150})
     cy.get('#open-text-area').should('have.value','teste de texto livre')
 
-    cy.get('button').click()
+    cy.get('button[type="submit"]').click()
 
     cy.get('.success').should('be.visible')
   
@@ -41,12 +41,12 @@ describe('Digitando em campos e clicando em elementos', () =>{
     cy.get('#open-text-area').type('teste de validação de email',{delay:150})
     cy.get('#open-text-area').should('have.value','teste de validação de email')
 
-    cy.get('button').click()
+    cy.get('button[type="submit"]').click()
 
     cy.get('.error').should('be.visible')    
   })
 
-    it('valida campo telefone, ao digitar algo diferente de numeros o mesmo continua vazio', () =>{
+  it('valida campo telefone, ao digitar algo diferente de numeros o mesmo continua vazio', () =>{
 
     cy.get('#firstName').type('Jairo',{delay:150})
     cy.get('#firstName').should('have.value','Jairo')
@@ -63,7 +63,7 @@ describe('Digitando em campos e clicando em elementos', () =>{
     cy.get('#open-text-area').type('teste de validação do campo telefone em branco',{delay:150})
     cy.get('#open-text-area').should('have.value','teste de validação do campo telefone em branco')
 
-    cy.get('button').click()
+    cy.get('button[type="submit"]').click()
 
     cy.get('.success').should('be.visible')    
   }) 
@@ -79,7 +79,7 @@ describe('Digitando em campos e clicando em elementos', () =>{
     cy.get('#email').type('jair@uol.com.br',{delay:150})
     cy.get('#email').should('have.value','jair@uol.com.br')
  
-    cy.get('#phone-checkbox').check()
+    cy.get('#phone-checkbox').click()
 
     cy.get('#phone').type('telefone jair', {delay:150})
     cy.get('#phone').should('have.value','')
@@ -87,12 +87,12 @@ describe('Digitando em campos e clicando em elementos', () =>{
     cy.get('#open-text-area').type('teste de validação do campo telefone obrigatorio',{delay:150})
     cy.get('#open-text-area').should('have.value','teste de validação do campo telefone obrigatorio')
 
-    cy.get('button').click()
+    cy.get('button[type="submit"]').click()
 
     cy.get('.error').should('be.visible')    
   }) 
   
-    it('preenche e limpa os campos nome, sobrenome, email e telefone', () =>{
+  it('preenche e limpa os campos nome, sobrenome, email e telefone', () =>{
 
     cy.get('#firstName').type('Jaime',{delay:150})
     cy.get('#firstName').should('have.value','Jaime')
@@ -120,11 +120,52 @@ describe('Digitando em campos e clicando em elementos', () =>{
 
   }) 
 
-      it('exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', () =>{
+  it('exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', () =>{
 
-    cy.get('button').click()
+    cy.get('button[type="submit"]').click()
 
-    cy.get('.error').should('be.visible')      
+    cy.get('.error').should('be.visible')
 
+  })
+
+  // aqui segue a 1a versão do 7o exercicio extra, onde serão utilizados "Comandos Personalizados"
+  it('envia o formulário com sucesso usando um comando customizado', () =>{
+    cy.fillMandatoryFieldsAndSubmit()
+
+    cy.get('.success').should('be.visible')
+  })
+
+   // aqui segue a 2a versão do 7o exercicio extra, onde serão utilizados "Comandos Personalizados"
+   it('envia o formulário com sucesso usando um comando customizado, usando variáveis', () => {
+
+    const data = {
+      firstName: 'Jaime',
+      lastName:  'Honorato',
+      email:     'jaime@gmail.com',
+      phone:     '11964200039',
+      text:      'Utilizando uma constante como parâmetro'
+    }
+
+    cy.fillMandatoryFieldsAndSubmitConst(data)
+
+    cy.get('.success').should('be.visible')
+   })
+
+   // aqui segue a 3a versão do 7o exercicio extra, onde serão utilizados "Comandos Personalizados"
+   
+ 
+  it('envia o formulário com sucesso usando um comando customizado, usando variáveis', () => {
+
+    cy.fillMandatoryFieldsAndSubmitConst()
+
+    cy.get('.success').should('be.visible')
+   })
+
+   //aqui estamos utilizando as TAGs do HTML para interagir com os itens, neste cado a TAG Button
+  it('utilizaqndo o comando ".contains"', () =>{
+
+    cy.contains('button','Enviar').click()
+
+    cy.get('.error').should('be.visible')    
   })
 })
