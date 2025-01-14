@@ -193,4 +193,53 @@ describe('Digitando em campos e clicando em elementos', () =>{
 
   })
 
+  // Lição 4 - Marcando entradas do tiporadio
+  it('marca o tipo de atendimento "Feedback"', () => {
+
+    cy.get('input[type="radio"][value="feedback"]')
+      .check()
+      .should('be.checked')
+  })
+
+  it('marca o tipo de atendimento "Elogio"', () => {
+
+    cy.get('input[type="radio"][value="elogio"]')
+      .check()
+      .should('be.checked')
+  })
+
+  it('marca o tipo de atendimento "Ajuda"', () => {
+
+    cy.get('input[type="radio"][value="ajuda"]')
+      .check()
+      .should('be.checked')
+  })
+
+  it('marca cada tipo de atendimento', () => {
+
+    cy.get('input[type="radio"][value="feedback"]')
+      .check()
+      .should('be.checked')
+    
+    cy.get('input[type="radio"][value="ajuda"]')
+      .check()
+      .should('be.checked')
+
+    cy.get('input[type="radio"][value="elogio"]')
+      .check()
+      .should('be.checked')
+  })
+
+  //resolução do exercício extra feito pelo professor 
+
+  it.only('marca cada tipo de atendimento - prof', () => {
+
+    cy.get('input[type="radio"]')
+      .each(typeOfService => {
+        cy.wrap(typeOfService)
+        .check()
+        .should('be.checked')
+      })
+  })
+
 })
