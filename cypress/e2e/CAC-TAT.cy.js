@@ -168,4 +168,29 @@ describe('Digitando em campos e clicando em elementos', () =>{
 
     cy.get('.error').should('be.visible')    
   })
+  // Lição 3 - Selecionando opções em campos de seleção suspensa
+  it('seleciona um produto (YouTube) por seu texto', () => {
+
+    cy.get('#product')
+      .select('YouTube')
+      .should('have.value','youtube')
+
+  })
+  
+ it('seleciona um produto (Mentoria) por seu valor (value)', () => {
+
+    cy.get('#product')
+      .select('mentoria')
+      .should('have.value','mentoria')
+    
+    })
+
+  it('seleciona um produto (Blog) por seu índice', () => {
+
+    cy.get('#product')
+      .select(1)
+      .should('have.value','blog')
+
+  })
+
 })
