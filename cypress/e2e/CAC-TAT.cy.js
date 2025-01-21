@@ -232,7 +232,7 @@ describe('Digitando em campos e clicando em elementos', () =>{
 
   //resolução do exercício extra feito pelo professor 
 
-  it.only('marca cada tipo de atendimento - prof', () => {
+  it('marca cada tipo de atendimento - prof', () => {
 
     cy.get('input[type="radio"]')
       .each(typeOfService => {
@@ -240,6 +240,85 @@ describe('Digitando em campos e clicando em elementos', () =>{
         .check()
         .should('be.checked')
       })
+  })
+
+  it('marca ambos checkboxes, depois desmarca o último', () => {
+
+    cy.get('input[type="checkbox"]')
+      .first().check()
+      .should('be.checked')
+    cy.get('input[type="checkbox"]')
+      .last().check()
+      .should('be.checked')
+      .last().uncheck()
+      .should('not.be.checked')
+
+  })
+
+  it('marca ambos checkboxes, depois desmarca o último, versão do professor', () => {
+
+    cy.get('input[type="checkbox"]')
+      .check()
+      .should('be.checked')
+      .last()
+      .uncheck()
+      .should('not.be.checked')
+  })
+
+    it('re-valida campo telefone, ao selecionar o checkbox telefone ".check()" o campo passa a ser obrigatorio', () =>{
+
+    cy.get('#firstName').type('Jaime',{delay:150})
+    cy.get('#firstName').should('have.value','Jaime')
+
+    cy.get('#lastName').type('Honorato',{delay:150})
+    cy.get('#lastName').should('have.value','Honorato')
+
+    cy.get('#email').type('jaime@uol.com.br',{delay:150})
+    cy.get('#email').should('have.value','jaime@uol.com.br')
+ 
+    cy.get('#phone-checkbox')
+      .check()
+      .should('be.checked')
+
+    cy.get('#phone').type('telefone jaime', {delay:150})
+    cy.get('#phone').should('have.value','')
+
+    cy.get('#open-text-area').type('teste de validação do campo telefone obrigatorio, utilizando comando .check()',{delay:150})
+    cy.get('#open-text-area').should('have.value','teste de validação do campo telefone obrigatorio, utilizando comando .check()')
+
+    cy.get('button[type="submit"]').click()
+
+    cy.get('.error').should('be.visible')    
+  })
+
+  it('seleciona um arquivo da pasta fixtures', () => {
+
+    cy.get('#file-upload')
+      .selectFile('cypress/fixtures/example.json')
+      .should(input => {
+        expect(input[0].files[0].name).to.equal('example.json')
+      })
+  })
+
+  it('seleciona um arquivo simulando um drag-and-drop', () => {
+   
+    cy.get('#file-upload')
+      .selectFile('cypress/fixtures/example.json',{ action: 'drag-drop'})
+      .should(input => {
+        expect(input[0].files[0].name).to.equal('example.json')
+      })
+  })
+
+  it('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', () => {
+    
+    cy.fixture('example.json').as('sampleFile')
+
+    cy.get('#file-upload')
+      .selectFile('@sampleFile')
+      .should(input => {
+        expect(input[0].files[0].name).to.equal('example.json')
+      })
+
   })
 
 })
