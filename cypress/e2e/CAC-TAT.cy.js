@@ -321,4 +321,28 @@ describe('Digitando em campos e clicando em elementos', () =>{
 
   })
 
+
+  it("verifica que a política de privacidade abre em outra aba sem a necessidade de um clique", () => {
+    
+    cy.get('#privacy a').should('have.attr', 'target', '_blank')
+
+  })
+
+  it("acessa a página da política de privacidade removendo o target e então clicando no link", () => {
+
+    cy.get('#privacy a')
+      .invoke('removeAttr', 'target')
+      .click()
+    
+  })
+
+  it.only("testa a página da política de privacidade de forma independente", () => {
+    
+    cy.get("#privacy a")
+      .invoke('removeAttr', 'target')
+      .click()
+
+    cy.get('#title')
+      .should('have.text', 'CAC TAT - Política de Privacidade')
+  })
 })
