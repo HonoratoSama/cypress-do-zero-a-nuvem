@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "Curso 'Cypress, do Zero à Nuvem' da Escola Talking About Testing.",
   "main": "src/index.html",
- "scripts": {
-  "cy:open": "cypress open",
-  "test": "cypress run"
-},
-
+  "scripts": {
+    "cy:open": "cypress open",
+    "test": "cypress run"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wlsf82/cypress-do-zero-a-nuvem.git"
@@ -25,6 +24,7 @@
   "license": "MIT",
   "homepage": "https://github.com/wlsf82/cypress-do-zero-a-nuvem#readme",
   "dependencies": {
+    "@cypress/puppeteer": "^0.1.5",
     "cypress": "^13.12.0"
   }
 }

@@ -336,7 +336,7 @@ describe('Digitando em campos e clicando em elementos', () =>{
     
   })
 
-  it.only("testa a página da política de privacidade de forma independente", () => {
+  it("testa a página da política de privacidade de forma independente", () => {
     
     cy.get("#privacy a")
       .invoke('removeAttr', 'target')
@@ -344,5 +344,33 @@ describe('Digitando em campos e clicando em elementos', () =>{
 
     cy.get('#title')
       .should('have.text', 'CAC TAT - Política de Privacidade')
+  })
+
+  it("verifica que a política de privacidade abre em outra aba sem a necessidade de um clique, prof ver.", () =>{
+
+    cy.contains('a', 'Política de Privacidade')
+      .should('have.attr', 'href', 'privacy.html')
+      .and('have.attr', 'target', '_blank')
+  })
+
+  it("acessa a página da política de privacidade removendo o target e então clicando no link, prof ver.", () => {
+
+    cy.contains('a', 'Política de Privacidade')
+      .invoke('removeAttr', 'target')
+      .click()
+
+    cy.contains('h1', 'CAC TAT - Política de Privacidade')
+      .should('be.visible')
+  })
+// o teste na realidade pede para testar a página sem a necessidade de um clique, chamando direto "'privacy.html"
+  it.only("testa a página da política de privacidade de forma independente, prof ver.", () => {
+
+    cy.visit('./src/privacy.html')
+
+    cy.contains('h1', 'CAC TAT - Política de Privacidade')
+      .should('be.visible')
+
+    cy.contains('p', 'Talking About Testing')
+      .should('be.visible')
   })
 })
