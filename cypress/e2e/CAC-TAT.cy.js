@@ -10,16 +10,17 @@ describe('Central de Atendimento ao Cliente TAT', () => {
 describe('Digitando em campos e clicando em elementos', () =>{
   it('Preencher campos obrigatórios e clicar no botão ok', () =>{
 
-    cy.get('input[id="firstName"]').type('Jaime',{delay:150})
+    //cy.get('input[id="firstName"]').type('Jaime',{delay:150})
+    cy.get('input[id="firstName"]').type('Jaime')
     cy.get('input[id="firstName"]').should('have.value','Jaime')
 
-    cy.get('input[id="lastName"]').type('Honorato',{delay:150})
+    cy.get('input[id="lastName"]').type('Honorato')
     cy.get('input[id="lastName"]').should('have.value','Honorato')
 
-    cy.get('input[id="email"]').type('jaime@uol.com.br',{delay:150})
+    cy.get('input[id="email"]').type('jaime@uol.com.br')
     cy.get('input[id="email"]').should('have.value','jaime@uol.com.br')
  
-    cy.get('#open-text-area').type('teste de texto livre',{delay:150})
+    cy.get('#open-text-area').type('teste de texto livre')
     cy.get('#open-text-area').should('have.value','teste de texto livre')
 
     cy.get('button[type="submit"]').click()
@@ -29,16 +30,16 @@ describe('Digitando em campos e clicando em elementos', () =>{
   })
   it('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', () =>{
 
-    cy.get('#firstName').type('Jarde',{delay:150})
+    cy.get('#firstName').type('Jarde')
     cy.get('#firstName').should('have.value','Jarde')
 
-    cy.get('#lastName').type('Honorato',{delay:150})
+    cy.get('#lastName').type('Honorato')
     cy.get('#lastName').should('have.value','Honorato')
 
-    cy.get('#email').type('jardeuol.com.br',{delay:150})
+    cy.get('#email').type('jardeuol.com.br')
     cy.get('#email').should('have.value','jardeuol.com.br')
  
-    cy.get('#open-text-area').type('teste de validação de email',{delay:150})
+    cy.get('#open-text-area').type('teste de validação de email')
     cy.get('#open-text-area').should('have.value','teste de validação de email')
 
     cy.get('button[type="submit"]').click()
@@ -48,19 +49,19 @@ describe('Digitando em campos e clicando em elementos', () =>{
 
   it('valida campo telefone, ao digitar algo diferente de numeros o mesmo continua vazio', () =>{
 
-    cy.get('#firstName').type('Jairo',{delay:150})
+    cy.get('#firstName').type('Jairo')
     cy.get('#firstName').should('have.value','Jairo')
 
-    cy.get('#lastName').type('Honorato',{delay:150})
+    cy.get('#lastName').type('Honorato')
     cy.get('#lastName').should('have.value','Honorato')
 
-    cy.get('#email').type('jairo@uol.com.br',{delay:150})
+    cy.get('#email').type('jairo@uol.com.br')
     cy.get('#email').should('have.value','jairo@uol.com.br')
  
-    cy.get('#phone').type('telefone jairo', {delay:100})
+    cy.get('#phone').type('telefone jairo')
     cy.get('#phone').should('have.value','')
 
-    cy.get('#open-text-area').type('teste de validação do campo telefone em branco',{delay:150})
+    cy.get('#open-text-area').type('teste de validação do campo telefone em branco')
     cy.get('#open-text-area').should('have.value','teste de validação do campo telefone em branco')
 
     cy.get('button[type="submit"]').click()
@@ -70,21 +71,21 @@ describe('Digitando em campos e clicando em elementos', () =>{
 
   it('valida campo telefone, ao selecionar o checkbox telefone o campo passa a ser obrigatorio', () =>{
 
-    cy.get('#firstName').type('Jair',{delay:150})
+    cy.get('#firstName').type('Jair')
     cy.get('#firstName').should('have.value','Jair')
 
-    cy.get('#lastName').type('Honorato',{delay:150})
+    cy.get('#lastName').type('Honorato')
     cy.get('#lastName').should('have.value','Honorato')
 
-    cy.get('#email').type('jair@uol.com.br',{delay:150})
+    cy.get('#email').type('jair@uol.com.br')
     cy.get('#email').should('have.value','jair@uol.com.br')
  
     cy.get('#phone-checkbox').click()
 
-    cy.get('#phone').type('telefone jair', {delay:150})
+    cy.get('#phone').type('telefone jair')
     cy.get('#phone').should('have.value','')
 
-    cy.get('#open-text-area').type('teste de validação do campo telefone obrigatorio',{delay:150})
+    cy.get('#open-text-area').type('teste de validação do campo telefone obrigatorio')
     cy.get('#open-text-area').should('have.value','teste de validação do campo telefone obrigatorio')
 
     cy.get('button[type="submit"]').click()
@@ -94,16 +95,16 @@ describe('Digitando em campos e clicando em elementos', () =>{
   
   it('preenche e limpa os campos nome, sobrenome, email e telefone', () =>{
 
-    cy.get('#firstName').type('Jaime',{delay:150})
+    cy.get('#firstName').type('Jaime')
     cy.get('#firstName').should('have.value','Jaime')
 
-    cy.get('#lastName').type('Honorato',{delay:150})
+    cy.get('#lastName').type('Honorato')
     cy.get('#lastName').should('have.value','Honorato')
 
-    cy.get('#email').type('jaime@uol.com.br',{delay:150})
+    cy.get('#email').type('jaime@uol.com.br')
     cy.get('#email').should('have.value','jaime@uol.com.br')
  
-    cy.get('#phone').type('11964200039', {delay:150})
+    cy.get('#phone').type('11964200039')
     cy.get('#phone').should('have.value','11964200039')
 
     cy.get('#firstName').clear()
@@ -267,23 +268,23 @@ describe('Digitando em campos e clicando em elementos', () =>{
 
     it('re-valida campo telefone, ao selecionar o checkbox telefone ".check()" o campo passa a ser obrigatorio', () =>{
 
-    cy.get('#firstName').type('Jaime',{delay:150})
+    cy.get('#firstName').type('Jaime')
     cy.get('#firstName').should('have.value','Jaime')
 
-    cy.get('#lastName').type('Honorato',{delay:150})
+    cy.get('#lastName').type('Honorato')
     cy.get('#lastName').should('have.value','Honorato')
 
-    cy.get('#email').type('jaime@uol.com.br',{delay:150})
+    cy.get('#email').type('jaime@uol.com.br')
     cy.get('#email').should('have.value','jaime@uol.com.br')
  
     cy.get('#phone-checkbox')
       .check()
       .should('be.checked')
 
-    cy.get('#phone').type('telefone jaime', {delay:150})
+    cy.get('#phone').type('telefone jaime')
     cy.get('#phone').should('have.value','')
 
-    cy.get('#open-text-area').type('teste de validação do campo telefone obrigatorio, utilizando comando .check()',{delay:150})
+    cy.get('#open-text-area').type('teste de validação do campo telefone obrigatorio, utilizando comando .check()')
     cy.get('#open-text-area').should('have.value','teste de validação do campo telefone obrigatorio, utilizando comando .check()')
 
     cy.get('button[type="submit"]').click()
@@ -363,7 +364,7 @@ describe('Digitando em campos e clicando em elementos', () =>{
       .should('be.visible')
   })
 // o teste na realidade pede para testar a página sem a necessidade de um clique, chamando direto "'privacy.html"
-  it.only("testa a página da política de privacidade de forma independente, prof ver.", () => {
+  it("testa a página da política de privacidade de forma independente, prof ver.", () => {
 
     cy.visit('./src/privacy.html')
 
