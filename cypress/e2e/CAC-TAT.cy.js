@@ -375,7 +375,7 @@ describe('Digitando em campos e clicando em elementos', () =>{
       .should('be.visible')
   })
   // Lição 12 - Avançando no uso do Cypress - Controle o Relógio " cy.clock() e cy.tick()"
-  it.only("controla o relógio, .success deve aparecer e desaparecer", () => {
+  it("controla o relógio, .success deve aparecer e desaparecer", () => {
     
     cy.clock() //congela o relógio 
     cy.get('input[id="firstName"]').type('Jaime')
