@@ -374,4 +374,38 @@ describe('Digitando em campos e clicando em elementos', () =>{
     cy.contains('p', 'Talking About Testing')
       .should('be.visible')
   })
+  // Lição 12 - Avançando no uso do Cypress - Controle o Relógio " cy.clock() e cy.tick()"
+  it.only("controla o relógio, .success deve aparecer e desaparecer", () => {
+    
+    cy.clock() //congela o relógio 
+    cy.get('input[id="firstName"]').type('Jaime')
+    cy.get('input[id="firstName"]').should('have.value','Jaime')
+
+    cy.get('input[id="lastName"]').type('Honorato')
+    cy.get('input[id="lastName"]').should('have.value','Honorato')
+
+    cy.get('input[id="email"]').type('jaime@uol.com.br')
+    cy.get('input[id="email"]').should('have.value','jaime@uol.com.br')
+ 
+    cy.get('#open-text-area').type('teste de texto livre')
+    cy.get('#open-text-area').should('have.value','teste de texto livre')
+    
+    cy.get('button[type="submit"]').click()
+    cy.get('.success').should('be.visible')
+
+    cy.tick(3000) // avança o relógio em 3 segundos
+    cy.get('.success').should('not.be.visible') 
+
+  })
+
+  it("controla o relógio, .error deve aparecer e desaparecer", () => {
+    
+    cy.clock() //congela o relógio 
+    cy.contains('button','Enviar').click()
+    cy.get('.error').should('be.visible') 
+
+    cy.tick(3000) // avança o relógio em 3 segundos
+    cy.get('.error').should('not.be.visible') 
+    
+  })
 })
