@@ -438,7 +438,7 @@ describe('Digitando em campos e clicando em elementos', () =>{
 
   })
 
-  it.only("Faz uma requisição HTTP, cy.request()", () => {
+  it("Faz uma requisição HTTP, cy.request()", () => {
 
     cy.request('https://cac-tat-v3.s3.eu-central-1.amazonaws.com/index.html')
     .as('getRequest')
@@ -454,5 +454,19 @@ describe('Digitando em campos e clicando em elementos', () =>{
       .should('include', 'CAC TAT')
 
   })
+
+  it.only("Encontra o gato e verifica que o mesmo está visível", () => {
+
+    cy.visit('src/index.html')
+
+    cy.get("#cat")
+    .should('not.be.visible')
+    .invoke('show')
+    .should('be.visible')
+
+    cy.get('#title')
+    .invoke("text", "CAT TAT")
+
+})
 
 })
