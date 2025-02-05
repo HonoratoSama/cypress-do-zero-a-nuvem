@@ -455,7 +455,7 @@ describe('Digitando em campos e clicando em elementos', () =>{
 
   })
 
-  it.only("Encontra o gato e verifica que o mesmo está visível", () => {
+  it("Encontra o gato e verifica que o mesmo está visível", () => {
 
     cy.visit('src/index.html')
 
